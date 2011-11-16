@@ -1,0 +1,61 @@
+<configuration>
+    <referential>
+        <name>referential</name>
+        <group>
+            <title>les pk</title>
+            <field>
+                <name>dataSourceCode</name>
+            </field>
+            <field>
+                <name>id1</name>
+            </field>
+        </group>
+        <group>
+            <title>des valeurs</title>
+            <field>
+                <name>val1</name>
+            </field>
+            <field>
+                <name>val2</name>
+            </field>
+        </group>
+    </referential>
+    <referential>
+        <name>referential2</name>
+        <group>
+            <title>les pk2</title>
+            <field>
+                <name>dataSourceCode</name>
+                <handlerId>selectValidsmartPortfolio</handlerId>
+                <selector>holdDate</selector>
+            </field>
+            <field>
+                <name>portfolioId</name>
+                <handlerId>selectValidsmartPortfolio</handlerId>
+                <selector>holdDate</selector>
+                <rootDisplayed>false</rootDisplayed>
+                <relatedField>
+                    <name>portfolioName</name>
+                    <label>Nom portefeuille</label>
+                </relatedField>
+                <relatedField>
+                    <name>portfolioGrp</name>
+                    <label>Groupe</label>
+                </relatedField>
+            </field>
+            <field>
+                <name>id1</name>
+                <editable>false</editable>
+            </field>
+        </group>
+        <group>
+            <title>des valeurs2</title>
+            <field>
+                <name>val1</name>
+            </field>
+            <field>
+                <name>val2</name>
+            </field>
+        </group>
+    </referential>
+</configuration>

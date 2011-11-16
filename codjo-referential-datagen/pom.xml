@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- POM's layout - http://www.javaworld.com/javaworld/jw-05-2006/jw-0529-maven.html -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+     | POM Relationships
+     -->
+
+    <artifactId>codjo-referential-datagen</artifactId>
+    <parent>
+        <groupId>net.codjo.referential</groupId>
+        <artifactId>codjo-referential</artifactId>
+        <version>1.62</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>net.codjo.mad</groupId>
+            <artifactId>codjo-mad-server</artifactId>
+        </dependency>
+    </dependencies>
+    <!--
+    | Project Information
+    -->
+
+    <name>Lib &gt; Referential &gt; Datagen</name>
+
+    <!--
+    | Build Settings
+    -->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>src/datagen/datagen.xml</file>
+                                    <type>xml</type>
+                                    <classifier>datagen</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.codjo.maven.mojo</groupId>
+                <artifactId>maven-datagen-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>
+                            <groupId>net.codjo.mad</groupId>
+                            <artifactId>codjo-mad-server</artifactId>
+                            <classifier>datagen</classifier>
+                        </include>
+                        <include>
+                            <groupId>net.codjo.security</groupId>
+                            <artifactId>codjo-security-server</artifactId>
+                            <classifier>datagen</classifier>
+                        </include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

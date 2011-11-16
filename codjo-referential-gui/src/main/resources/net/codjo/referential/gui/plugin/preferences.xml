@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<preferenceList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="http://preference.xsd">
+    <preference id="PmReferentialFamily" detailWindowClassName="net.codjo.referential.gui.admin.FamilyDetail">
+        <selectByPk>selectPmReferentialFamilyById</selectByPk>
+        <selectAll>selectAllPmReferentialFamily</selectAll>
+        <update>updatePmReferentialFamily</update>
+        <delete>deletePmReferentialFamily</delete>
+        <insert>newPmReferentialFamily</insert>
+
+        <hidden>
+            <column fieldName="familyId"/>
+        </hidden>
+        <column fieldName="familyLabel" label="Famille" preferredSize="100"/>
+    </preference>
+
+    <preference id="RefFamilyAsso">
+        <selectAll>selectPmRefFamilyRefAssoByFamily</selectAll>
+        <update>updatePmRefFamilyRefAsso</update>
+        <delete>deletePmRefFamilyRefAsso</delete>
+        <insert>newPmRefFamilyRefAsso</insert>
+
+        <column fieldName="referentialId" label="Référentiels assignés" preferredSize="100"/>
+        <hidden>
+            <column fieldName="familyId"/>
+        </hidden>
+    </preference>
+
+</preferenceList>

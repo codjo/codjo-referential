@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="net.codjo.referential.gui.admin.ReferentialAssoForm">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="608" height="400"/>
+    </constraints>
+    <properties>
+      <name value=""/>
+    </properties>
+    <border type="empty">
+      <size top="5" left="5" bottom="5" right="5"/>
+    </border>
+    <children>
+      <splitpane id="99bc4" binding="splitPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <continuousLayout value="true"/>
+          <dividerLocation value="179"/>
+        </properties>
+        <border type="empty">
+          <size top="5" left="0" bottom="0" right="0"/>
+        </border>
+        <children>
+          <grid id="853e" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="22739">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="fc24d" class="net.codjo.mad.gui.request.RequestTable" binding="familyList">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <toolbar id="abb55" class="net.codjo.mad.gui.request.RequestToolBar" binding="familyListToolbar">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="25"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </toolbar>
+            </children>
+          </grid>
+          <grid id="6fd32" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="5" left="5" bottom="5" right="5"/>
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <name value=""/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="b9a2" class="net.codjo.mad.gui.request.util.selection.SelectionGui" binding="selectionGui">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="b73b0" class="javax.swing.JTextField" binding="filterRefTextField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <toolTipText value="Texte à chercher"/>
+                </properties>
+              </component>
+              <component id="5558b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Filtre :"/>
+                </properties>
+              </component>
+              <component id="99fd1" class="javax.swing.JButton" binding="performFilterButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="20" height="20"/>
+                    <preferred-size width="20" height="20"/>
+                    <maximum-size width="20" height="20"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="net/codjo/referential/gui/tick.png"/>
+                  <margin top="2" left="2" bottom="2" right="2"/>
+                  <name value="performSearchButton"/>
+                  <text value=""/>
+                  <toolTipText value="Effectuer la recherche"/>
+                </properties>
+              </component>
+              <component id="dbe51" class="javax.swing.JButton" binding="resetFilterButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="20" height="20"/>
+                    <preferred-size width="20" height="20"/>
+                    <maximum-size width="20" height="20"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <icon value="net/codjo/referential/gui/cross.png"/>
+                  <margin top="2" left="2" bottom="2" right="2"/>
+                  <name value="resetSearchButton"/>
+                  <text value=""/>
+                  <toolTipText value="Annuler la recherche"/>
+                </properties>
+              </component>
+              <hspacer id="8ebe1">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+        </children>
+      </splitpane>
+      <grid id="cd2e9" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="c7311" class="javax.swing.JButton" binding="okButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Valider"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="a1e1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="22"/>
+          <text value="Gestion des familles de référentiels"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <inspectionSuppressions>
+    <suppress inspection="MissingMnemonic" id="cbd5c"/>
+    <suppress inspection="MissingMnemonic" id="75f95"/>
+  </inspectionSuppressions>
+</form>

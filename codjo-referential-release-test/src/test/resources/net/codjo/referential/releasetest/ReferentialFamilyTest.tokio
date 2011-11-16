@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE cases SYSTEM "http://cases.dtd">
+<cases>
+    <case id="CreateFamily">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+        </input>
+        <output>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille en or"/>
+                </row>
+            </table>
+        </output>
+    </case>
+
+    <case id="UpdateFamily">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row id="family1">
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille en plomb"/>
+                </row>
+            </table>
+        </input>
+        <output>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <copy row="family1">
+                    <field name="FAMILY_LABEL" value="Famille en or"/>
+                </copy>
+            </table>
+        </output>
+    </case>
+
+    <case id="LoadEmptyFamilies">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+        </input>
+    </case>
+
+    <case id="LoadFamiliesWithReferentials">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </input>
+    </case>
+
+    <case id="loadInvalidReferential">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="BogusList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </input>
+        <output>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </output>
+    </case>
+
+    <case id="AssignReferentialToFamily">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+            </table>
+        </input>
+        <output>
+            <table name="PM_REF_FAMILY_REF_ASSO" orderClause="FAMILY_ID,REFERENTIAL_ID">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </output>
+    </case>
+
+    <case id="DeleteFamily">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </input>
+        <output>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </output>
+    </case>
+
+    <case id="SortReferential">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+            </table>
+        </input>
+        <output>
+            <table name="PM_REF_FAMILY_REF_ASSO" orderClause="FAMILY_ID,REFERENTIAL_ID">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+            </table>
+        </output>
+    </case>
+    <case id="FilterReferentialTable">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Famille 1"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Famille 2"/>
+                </row>
+            </table>
+        </input>
+    </case>
+</cases>

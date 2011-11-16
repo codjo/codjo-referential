@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- POM's layout - http://www.javaworld.com/javaworld/jw-05-2006/jw-0529-maven.html -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+     | POM Relationships
+     -->
+    <groupId>net.codjo.referential</groupId>
+    <artifactId>codjo-referential</artifactId>
+    <version>1.62</version>
+    <parent>
+        <groupId>net.codjo.pom</groupId>
+        <artifactId>codjo-pom-library</artifactId>
+        <version>SNAPSHOT</version>
+    </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-gui</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-datagen</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-datagen</artifactId>
+                <version>${project.version}</version>
+                <classifier>client</classifier>
+            </dependency>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-datagen</artifactId>
+                <version>${project.version}</version>
+                <classifier>server</classifier>
+            </dependency>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-datagen</artifactId>
+                <version>${project.version}</version>
+                <classifier>sql</classifier>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--
+    | Build Settings
+    -->
+
+    <packaging>pom</packaging>
+    <modules>
+        <module>codjo-referential-datagen</module>
+        <module>codjo-referential-gui</module>
+        <module>codjo-referential-release-test</module>
+        <module>codjo-referential-gui-addon</module>
+    </modules>
+
+    <!--
+    | Project Information
+    -->
+
+    <name>Lib &gt; Referential</name>
+    <description>
+        Interface unique permettant de gérer les référentiels.
+    </description>
+    <inceptionYear>2007</inceptionYear>
+
+    <!--
+    | Environment Information
+    -->
+
+    <scm>
+        <connection>scm:git:https://github.com/codjo/codjo-referential.git</connection>
+        <developerConnection>scm:git:https://github.com/codjo/codjo-referential.git</developerConnection>
+        <url>https://github.com/codjo/codjo-referential</url>
+    </scm>
+
+</project>

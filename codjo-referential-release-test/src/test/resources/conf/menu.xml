@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<menubar>
+    <menu>
+        <name>net.codjo.referential.gui.menu.Référentiel</name>
+        <menu plugin="net.codjo.referential.gui.plugin.ReferentialGuiPlugin" actionId="referential"/>
+        <menu plugin="net.codjo.referential.gui.plugin.ReferentialGuiPlugin" actionId="referentialFamily"/>
+    </menu>
+</menubar>

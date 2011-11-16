@@ -1,0 +1,20 @@
+<configuration>
+    <referential>
+        <name>referential</name>
+        <group>
+            <title>group1</title>
+            <field>
+                <name>champ</name>
+            </field>
+            <field>
+                <name>master</name>
+                <handlerId>handlerMaster</handlerId>
+            </field>
+            <field>
+                <name>slave</name>
+                <handlerId>handlerSlave</handlerId>
+                <master>master</master>
+            </field>
+        </group>
+    </referential>
+</configuration>

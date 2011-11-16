@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<entities>
+    <entity name="net.codjo.referential.ref.Country" table="REF_COUNTRY">
+        <description>Pays</description>
+
+        <feature>
+            <referential/>
+            <handler-sql id="selectAll${className}WithCloseDate">
+                <attributes>
+                    <name>refCode</name>
+                    <name>refLabel</name>
+                </attributes>
+                <query>
+                    <![CDATA[
+                            select ${SQLAttributes}
+                            from ${table}
+                            where ${SQLName:closeDate} > ? OR ${SQLName:closeDate} = '9999-12-31'
+                        ]]>
+                </query>
+                <arg>closeDate</arg>
+            </handler-sql>
+        </feature>
+
+        <primary-key>
+            <field name="refCode"/>
+        </primary-key>
+
+        <properties>
+            <field name="refCode" type="string">
+                <description>Code</description>
+                <sql type="varchar" precision="6" required="true"/>
+            </field>
+            <field name="refLabel" type="string">
+                <description>Libellé</description>
+                <sql type="varchar" precision="255" required="true"/>
+            </field>
+            <field name="closeDate" type="java.sql.Date">
+                <description>Date de clôture</description>
+                <sql type="timestamp"/>
+            </field>
+        </properties>
+    </entity>
+
+    <entity name="net.codjo.referential.ref.Currency" table="REF_CURRENCY"
+            extends="net.codjo.referential.ref.Country">
+        <description>Devise</description>
+
+        <feature>
+            <referential/>
+        </feature>
+        <properties>
+            <field name="isValid" type="boolean">
+                <description>Est valide</description>
+                <sql type="bit" default="0" required="true"/>
+            </field>
+            <field name="value" type="big-decimal">
+                <description>Valeur</description>
+                <sql type="numeric" precision="12,2"/>
+            </field>
+            <field name="people" type="integer">
+                <description>Population</description>
+                <sql type="numeric" precision="10"/>
+            </field>
+            <field name="pib" type="double">
+                <description>Produit Intérieur Brut</description>
+                <sql type="numeric" precision="10,5"/>
+            </field>
+        </properties>
+    </entity>
+
+    <entity name="net.codjo.referential.ref.ValFrequency" table="REF_VAL_FREQUENCY"
+            extends="net.codjo.referential.ref.Country">
+        <description>Fréquence de valorisation</description>
+        <feature>
+            <referential/>
+        </feature>
+    </entity>
+
+    <entity name="net.codjo.referential.ref.ExecutionVl" table="REF_EXECUTION_VL"
+            extends="net.codjo.referential.ref.Country">
+        <description>VL d'exécution</description>
+        <feature>
+            <referential>
+                <fill field="valFrequency" handlerId="selectAllValFrequencyWithCloseDate"/>
+            </referential>
+        </feature>
+        <primary-key>
+            <field name="refCode"/>
+            <field name="valFrequency"/>
+        </primary-key>
+        <foreign-keys>
+            <link id="FK_EXEC_VAL_VAL_FREQ" table="net.codjo.referential.ref.ValFrequency">
+                <field from="valFrequency" to="refCode"/>
+            </link>
+        </foreign-keys>
+
+        <properties>
+            <field name="valFrequency" type="string">
+                <description>Fréquence de valorisation</description>
+                <sql type="varchar" precision="6"/>
+            </field>
+        </properties>
+    </entity>
+</entities>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://datagen.xsd">
+    <entity name="net.codjo.referential.server.PmReferentialFamily" table="PM_REFERENTIAL_FAMILY">
+        <description>Liste des familles de référentiels</description>
+        <feature>
+            <sql/>
+            <bean/>
+            <castor/>
+            <sql-index>
+                <idx type="primary-key" name-prefix="X1_" clustered="true"/>
+            </sql-index>
+            <sql-constraint/>
+            <doc-structure/>
+            <handler-update id="update${className}"/>
+            <handler-new id="new${className}"/>
+            <handler-select id="select${className}ById" type="By_Primary-Key"/>
+            <handler-sql id="delete${className}" transaction="true">
+                <attributes>
+                    <name>nbLines</name>
+                </attributes>
+                <query><![CDATA[
+                    delete from PM_REF_FAMILY_REF_ASSO where FAMILY_ID = ?
+                    delete from PM_REFERENTIAL_FAMILY where FAMILY_ID = ?
+                    
+                    select @@rowcount as NB_LINES
+                ]]></query>
+                <arg>familyId</arg>
+                <arg>familyId</arg>
+            </handler-sql>
+            <handler-select id="selectAll${className}">
+                <query><![CDATA[
+                     select FAMILY_ID, FAMILY_LABEL
+                     from PM_REFERENTIAL_FAMILY
+                     order by FAMILY_LABEL
+                    ]]>
+                </query>
+            </handler-select>
+        </feature>
+
+        <primary-key key-generator="MAX">
+            <field name="familyId"/>
+        </primary-key>
+
+        <properties>
+            <field name="familyId" type="big-decimal">
+                <description>id</description>
+                <sql type="numeric" precision="23" required="true"/>
+            </field>
+            <field name="familyLabel" type="string">
+                <description>Libellé</description>
+                <sql type="varchar" precision="255" required="true"/>
+            </field>
+        </properties>
+    </entity>
+
+    <entity name="net.codjo.referential.server.PmRefFamilyRefAsso" table="PM_REF_FAMILY_REF_ASSO">
+        <description>Table d'association référentiel/famille</description>
+        <feature>
+            <sql/>
+            <bean/>
+            <castor/>
+            <sql-index>
+                <idx type="primary-key" name-prefix="X1_" clustered="true"/>
+            </sql-index>
+            <sql-constraint/>
+            <doc-structure/>
+            <handler-update id="update${className}"/>
+            <handler-new id="new${className}"/>
+            <handler-delete id="delete${className}"/>
+            <handler-sql id="selectAll${className}" return-pk="false">
+                <attributes>
+                    <name>familyLabel</name>
+                    <name>referentialId</name>
+                </attributes>
+                <query><![CDATA[
+                     select FAMILY_LABEL, REFERENTIAL_ID
+                     from PM_REF_FAMILY_REF_ASSO a
+                     inner join PM_REFERENTIAL_FAMILY b on a.FAMILY_ID = b.FAMILY_ID
+                     order by FAMILY_LABEL
+                    ]]>
+                </query>
+            </handler-sql>
+            <handler-select id="select${className}ByFamily">
+                <query><![CDATA[
+                     select a.FAMILY_ID, REFERENTIAL_ID
+                     from PM_REF_FAMILY_REF_ASSO a
+                     inner join PM_REFERENTIAL_FAMILY b on a.FAMILY_ID = b.FAMILY_ID
+                     where a.FAMILY_ID = ?
+                    ]]>
+                </query>
+                <arg>familyId</arg>
+            </handler-select>
+        </feature>
+
+        <primary-key>
+            <field name="familyId"/>
+            <field name="referentialId"/>
+        </primary-key>
+        <foreign-keys>
+            <link id="FK_REF_FAMILY_REF_ASSO" table="net.codjo.referential.server.PmReferentialFamily">
+                <field from="familyId" to="familyId"/>
+            </link>
+        </foreign-keys>
+
+        <properties>
+            <field name="familyId" type="big-decimal">
+                <description>id famille</description>
+                <sql type="numeric" precision="23" required="true"/>
+            </field>
+            <field name="referentialId" type="string">
+                <description>Référentiel</description>
+                <sql type="varchar" precision="255" required="true"/>
+            </field>
+        </properties>
+    </entity>
+
+</entities>

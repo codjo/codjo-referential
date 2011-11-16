@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Scenarii SYSTEM "http://scenarii.dtd">
+<Scenarii>
+
+    <Scenario id="displayReferenceNoFamilyList">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_COUNTRY">
+                <row>
+                    <field name="REF_CODE" value="FR"/>
+                    <field name="REF_LABEL" value="Frankreich"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+                <row>
+                    <field name="REF_CODE" value="CH"/>
+                    <field name="REF_LABEL" value="Chweiz"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+        </etalon>
+    </Scenario>
+    <Scenario id="displayReferenceWithFamilyList">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Géographie"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Monétaire"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="FAMILY_LABEL" value="Finance"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="BidonList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+        </etalon>
+    </Scenario>
+
+    <Scenario id="deleteReferentialData">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_COUNTRY">
+                <row>
+                    <field name="REF_CODE" value="FR"/>
+                    <field name="REF_LABEL" value="Frankreich"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+                <row>
+                    <field name="REF_CODE" value="CH"/>
+                    <field name="REF_LABEL" value="Chweiz"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+            <table name="REF_COUNTRY">
+                <row>
+                    <field name="REF_CODE" value="FR"/>
+                    <field name="REF_LABEL" value="Frankreich"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+            </table>
+        </etalon>
+    </Scenario>
+
+    <Scenario id="addReferentialData">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_CURRENCY">
+            </table>
+        </input>
+        <etalon>
+            <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
+                <row>
+                    <field name="REF_CODE" value="Code1"/>
+                    <field name="REF_LABEL" value="Label1"/>
+                    <field name="PIB" value="123.00000"/>
+                    <field name="VALUE" value="8.97"/>
+                    <field name="PEOPLE" value="456"/>
+                    <field name="CLOSE_DATE" value="2007-01-01 00:00:00.0"/>
+                </row>
+            </table>
+        </etalon>
+    </Scenario>
+    <Scenario id="updateReferentialData">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
+                <row>
+                    <field name="REF_CODE" value="CODE1"/>
+                    <field name="REF_LABEL" value="LABEL1"/>
+                    <field name="PIB" value="123.00000"/>
+                    <field name="VALUE" value="8.97"/>
+                    <field name="PEOPLE" value="200"/>
+                    <field name="IS_VALID" value="true"/>
+                    <field name="CLOSE_DATE" value="2007-01-01 00:00:00.0"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+            <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
+                <row>
+                    <field name="REF_CODE" value="CODE1"/>
+                    <field name="REF_LABEL" value="truc"/>
+                    <field name="PIB" value="123.00000"/>
+                    <field name="VALUE" value="8.97"/>
+                    <field name="PEOPLE" value="200"/>
+                    <field name="CLOSE_DATE" value="2007-01-01 00:00:00.0"/>
+                </row>
+            </table>
+        </etalon>
+    </Scenario>
+
+    <Scenario id="duplicateReferentialData">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
+                <row id="source">
+                    <field name="REF_CODE" value="CODE1"/>
+                    <field name="REF_LABEL" value="LABEL1"/>
+                    <field name="PIB" value="123.00000"/>
+                    <field name="VALUE" value="8.97"/>
+                    <field name="PEOPLE" value="200"/>
+                    <field name="IS_VALID" value="true"/>
+                    <field name="CLOSE_DATE" value="2007-01-01 00:00:00.0"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+            <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
+                <row inheritId="source"/>
+                <row id="duplicate" inheritId="source">
+                    <field name="REF_CODE" value="CODE2"/>
+                </row>
+            </table>
+        </etalon>
+    </Scenario>
+
+    <Scenario id="referentialWithComboBox">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+            </table>
+            <table name="REF_VAL_FREQUENCY">
+                <row>
+                    <field name="REF_CODE" value="EX1"/>
+                    <field name="REF_LABEL" value="EX1"/>
+                    <field name="CLOSE_DATE" value="9999-12-31 00:00:00.0"/>
+                </row>
+            </table>
+            <table name="REF_EXECUTION_VL">
+            </table>
+        </input>
+        <etalon>
+        </etalon>
+    </Scenario>
+
+</Scenarii>

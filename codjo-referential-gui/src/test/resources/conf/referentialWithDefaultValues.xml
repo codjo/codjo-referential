@@ -1,0 +1,11 @@
+<referentialList>
+    <linkReferential name="RefLinkType" preferenceId="LinkTypeList" label="Type d'association">
+        <field name="refCode" type="string" precision="6" primary="true" required="true"/>
+        <field name="refLabel" type="string" precision="255" primary="false" required="true"/>
+        <field name="permanentList" type="boolean" default="1" required="true"/>
+        <field name="comment" type="string" default="defaultComment"/>
+        <field name="intField" type="int" default="15"/>
+        <field name="doubleField" type="double" default="32.1"/>
+        <field name="bigDecimalField" type="big-decimal" precision="10,2" default="0.01"/>
+    </linkReferential>
+</referentialList>

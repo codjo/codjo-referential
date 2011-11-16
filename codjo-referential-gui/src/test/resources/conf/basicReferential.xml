@@ -1,0 +1,31 @@
+<referentialList>
+    <linkReferential name="Country" preferenceId="CountryList" label="Pays">
+        <field name="countryCode" label="country Code" type="string" precision="6" primary="true"/>
+        <field name="countryLabel" label="country Label" type="string" precision="255"/>
+        <field name="closedDate" label="closed Date" type="java.sql.Date"/>
+        <field name="isValid" type="boolean"/>
+        <field name="people" type="integer"/>
+        <field name="area" type="double"/>
+        <field name="presidentSalary" type="big-decimal" precision="10,2"/>
+        <field name="ceciliaBirthday" type="sql-date"/>
+        <field name="audit" structure="com.myapp.data.Audit"/>
+    </linkReferential>
+    <linkReferential name="Currency" preferenceId="CurrencyList" label="Devise">
+        <field name="currencyCode" type="string" precision="10" primary="true"/>
+        <field name="currencyLabel" type="string" precision="255"/>
+        <field name="closedDate" type="java.sql.Date"/>
+    </linkReferential>
+    <linkReferential name="ValFrequency" preferenceId="ValFrequencyList" label="Fréquence de valorisation">
+        <field name="refCode" type="string" precision="6" primary="true" required="true"/>
+        <field name="refLabel" type="string" precision="255" primary="false" required="true"/>
+        <field name="closedDate" type="java.sql.Date" primary="false"/>
+    </linkReferential>
+    <linkReferential name="ExecutionVl" preferenceId="ExecutionVlList" label="VL d'exécution">
+        <field name="refCode" type="string" precision="6" primary="true" required="true"/>
+        <field name="refLabel" type="string" precision="255" primary="false" required="true"/>
+        <field name="valFrequencyCode" type="string" precision="6" primary="false" required="false">
+            <refHandler id="selectAllValFrequencyWithCloseDate"/>
+        </field>
+        <field name="closedDate" type="java.sql.Date" primary="false"/>
+    </linkReferential>
+</referentialList>
