@@ -64,7 +64,7 @@
 
     <name>Lib &gt; Referential</name>
     <description>
-        Interface unique permettant de gérer les référentiels.
+        Module to manage dataset using a generic and highly customizable engine.
     </description>
     <inceptionYear>2007</inceptionYear>
 
