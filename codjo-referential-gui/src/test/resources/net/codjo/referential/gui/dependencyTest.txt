@@ -12,6 +12,7 @@ net.codjo.referential.gui
 	-> net.codjo.security.common.api
 	-> net.codjo.test.common
 	-> net.codjo.test.common.matcher
+	-> net.codjo.mad.gui.util
 	-> org.uispec4j
 
 net.codjo.referential.gui.api
