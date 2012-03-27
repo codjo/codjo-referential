@@ -1,14 +1,16 @@
 package net.codjo.referential.gui;
 
+import javax.swing.JInternalFrame;
 import net.codjo.mad.gui.framework.DefaultGuiContext;
 import net.codjo.mad.gui.request.DetailDataSource;
 import net.codjo.mad.gui.request.Preference;
+import net.codjo.mad.gui.util.InternationalizableGuiContext;
 import net.codjo.referential.gui.api.Field;
 import net.codjo.referential.gui.api.Referential;
-import static net.codjo.test.common.matcher.JUnitMatchers.*;
-import javax.swing.JInternalFrame;
 import org.junit.Test;
 import org.uispec4j.Window;
+
+import static net.codjo.test.common.matcher.JUnitMatchers.*;
 
 public class ReferentialDetailWindowBuilderTest {
 
@@ -43,8 +45,9 @@ public class ReferentialDetailWindowBuilderTest {
 
         Preference preference = createPreference(ReferentialDetailLogic.class);
 
+        InternationalizableGuiContext guiContext = new InternationalizableGuiContext();
         JInternalFrame internalFrame =
-              builder.buildFrame(new DetailDataSource(new DefaultGuiContext()), preference);
+              builder.buildFrame(new DetailDataSource(guiContext), preference);
 
         Window window = new Window(internalFrame);
         assertThat(window.getTitle(), equalTo("my title"));
@@ -60,9 +63,9 @@ public class ReferentialDetailWindowBuilderTest {
               new ReferentialDetailWindowBuilder(null, "my title", referential);
 
         Preference preference = createPreference(ReferentialDetailLogic.class);
-
+        InternationalizableGuiContext guiContext = new InternationalizableGuiContext();
         JInternalFrame internalFrame =
-              builder.buildFrame(new DetailDataSource(new DefaultGuiContext()), preference);
+              builder.buildFrame(new DetailDataSource(guiContext), preference);
 
         Window window = new Window(internalFrame);
         assertThat(window.getTitle(), equalTo("my title"));
