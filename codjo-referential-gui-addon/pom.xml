@@ -11,7 +11,7 @@
     <parent>
         <groupId>net.codjo.referential</groupId>
         <artifactId>codjo-referential</artifactId>
-        <version>1.64</version>
+        <version>1.65-SNAPSHOT</version>
     </parent>
 
     <dependencies>
