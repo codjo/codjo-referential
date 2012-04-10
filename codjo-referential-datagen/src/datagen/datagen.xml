@@ -15,15 +15,10 @@
             <handler-new id="new${className}"/>
             <handler-select id="select${className}ById" type="By_Primary-Key"/>
             <handler-sql id="delete${className}" transaction="true">
-                <attributes>
-                    <name>nbLines</name>
-                </attributes>
-                <query><![CDATA[
+                <query>
                     delete from PM_REF_FAMILY_REF_ASSO where FAMILY_ID = ?
                     delete from PM_REFERENTIAL_FAMILY where FAMILY_ID = ?
-                    
-                    select @@rowcount as NB_LINES
-                ]]></query>
+                </query>
                 <arg>familyId</arg>
                 <arg>familyId</arg>
             </handler-sql>
