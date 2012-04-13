@@ -5,7 +5,7 @@
         <selectByPk>selectPmReferentialFamilyById</selectByPk>
         <selectAll>selectAllPmReferentialFamily</selectAll>
         <update>updatePmReferentialFamily</update>
-        <delete>deletePmReferentialFamily</delete>
+        <delete type="command">deletePmReferentialFamily</delete>
         <insert>newPmReferentialFamily</insert>
 
         <hidden>

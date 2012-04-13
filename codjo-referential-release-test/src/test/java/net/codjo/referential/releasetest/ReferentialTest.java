@@ -129,7 +129,7 @@ public class ReferentialTest extends ReferentialGuiTestCase {
               .setLabel("Label1")
               .assertValidateButtonIsEnabled(true)
               .clickIsValid()
-              .setPib(123)
+              .setPib(123.01)
               .setPeople(456)
               .setValue(8.97)
               .setCloseDate("01", "01", "2007")

@@ -14,14 +14,6 @@
             <handler-update id="update${className}"/>
             <handler-new id="new${className}"/>
             <handler-select id="select${className}ById" type="By_Primary-Key"/>
-            <handler-sql id="delete${className}" transaction="true">
-                <query>
-                    delete from PM_REF_FAMILY_REF_ASSO where FAMILY_ID = ?
-                    delete from PM_REFERENTIAL_FAMILY where FAMILY_ID = ?
-                </query>
-                <arg>familyId</arg>
-                <arg>familyId</arg>
-            </handler-sql>
             <handler-select id="selectAll${className}">
                 <query><![CDATA[
                      select FAMILY_ID, FAMILY_LABEL
