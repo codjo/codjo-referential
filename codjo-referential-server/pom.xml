@@ -43,13 +43,24 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>net.codjo.datagen</groupId>
+            <artifactId>codjo-datagen</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.codjo.datagen</groupId>
+            <artifactId>codjo-datagen</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>net.codjo.database</groupId>
             <artifactId>codjo-database-${databaseType}</artifactId>
             <optional>true</optional>
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
     <name>Lib &gt; Referential server</name>
 
 </project>
