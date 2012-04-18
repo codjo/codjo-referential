@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Scenarii SYSTEM "http://scenarii.dtd">
+<Scenarii name="AUTOMATIC">
+    <Scenario id="deleteReferenceWithFamilyList">
+        <input>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="FAMILY_LABEL" value="Géographie"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Monétaire"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="FAMILY_LABEL" value="Finance"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="CountryList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="1"/>
+                    <field name="REFERENTIAL_ID" value="BidonList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </input>
+        <etalon>
+            <table name="PM_REFERENTIAL_FAMILY">
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="FAMILY_LABEL" value="Monétaire"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="FAMILY_LABEL" value="Finance"/>
+                </row>
+            </table>
+            <table name="PM_REF_FAMILY_REF_ASSO">
+                <row>
+                    <field name="FAMILY_ID" value="2"/>
+                    <field name="REFERENTIAL_ID" value="CurrencyList"/>
+                </row>
+                <row>
+                    <field name="FAMILY_ID" value="3"/>
+                    <field name="REFERENTIAL_ID" value="ValFrequencyList"/>
+                </row>
+            </table>
+        </etalon>
+
+    </Scenario>
+</Scenarii>

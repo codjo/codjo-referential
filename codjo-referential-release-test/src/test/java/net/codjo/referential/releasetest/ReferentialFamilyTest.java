@@ -1,10 +1,10 @@
 package net.codjo.referential.releasetest;
 import org.uispec4j.Button;
+import org.uispec4j.MenuBar;
+import org.uispec4j.MenuItem;
 import org.uispec4j.Table;
 import org.uispec4j.TextBox;
 import org.uispec4j.Window;
-import org.uispec4j.MenuBar;
-import org.uispec4j.MenuItem;
 import org.uispec4j.interception.WindowInterceptor;
 /**
  *

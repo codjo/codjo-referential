@@ -24,7 +24,7 @@ net.codjo.referential.gui.api
 	-> net.codjo.test.common
 	-> net.codjo.test.common.matcher
 	-> org.mockito
-	-> org.mockito.internal.progress
+	-> org.mockito.stubbing
 	-> org.uispec4j
 
 net.codjo.referential.gui.plugin

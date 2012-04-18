@@ -107,6 +107,9 @@
             </table>
         </input>
         <etalon>
+            <comparators>
+                <comparator field="PIB" precision="0.00001"/>
+            </comparators>
             <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
                 <row>
                     <field name="REF_CODE" value="Code1"/>
@@ -138,6 +141,9 @@
             </table>
         </input>
         <etalon>
+            <comparators>
+                <comparator field="PIB" precision="0.00001"/>
+            </comparators>
             <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
                 <row>
                     <field name="REF_CODE" value="CODE1"/>
@@ -170,6 +176,9 @@
             </table>
         </input>
         <etalon>
+            <comparators>
+                <comparator field="PIB" precision="0.00001"/>
+            </comparators>
             <table name="REF_CURRENCY" orderClause="REF_CODE,REF_LABEL">
                 <row inheritId="source"/>
                 <row id="duplicate" inheritId="source">
