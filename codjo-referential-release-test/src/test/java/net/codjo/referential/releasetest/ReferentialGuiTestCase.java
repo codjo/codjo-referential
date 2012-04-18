@@ -1,9 +1,10 @@
 package net.codjo.referential.releasetest;
+import java.io.File;
 import net.codjo.mad.gui.base.GuiPlugin;
 import net.codjo.plugin.server.ServerPlugin;
 import net.codjo.referential.gui.plugin.ReferentialGuiPlugin;
-import java.io.File;
 import org.uispec4j.Window;
+import server.plugin.ReferentialServerPlugin;
 /**
  *
  */
@@ -18,7 +19,7 @@ public abstract class ReferentialGuiTestCase extends GuiPluginTestCase {
     @Override
     protected Class<? extends ServerPlugin>[] getServerPlugins() {
         //noinspection unchecked
-        return new Class[0];
+        return new Class[]{ReferentialServerPlugin.class};
     }
 
 

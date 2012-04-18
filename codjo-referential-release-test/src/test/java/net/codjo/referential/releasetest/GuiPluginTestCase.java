@@ -1,4 +1,9 @@
 package net.codjo.referential.releasetest;
+import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
 import net.codjo.agent.UserId;
 import net.codjo.agent.test.AgentContainerFixture;
 import net.codjo.database.common.api.JdbcFixture;
@@ -26,12 +31,9 @@ import net.codjo.security.common.api.UserMock;
 import net.codjo.security.gui.plugin.SecurityGuiPlugin;
 import net.codjo.security.server.plugin.SecurityServerPlugin;
 import net.codjo.sql.server.plugin.JdbcServerPlugin;
+import net.codjo.test.common.PathUtil;
 import net.codjo.test.common.fixture.CompositeFixture;
 import net.codjo.tokio.TokioFixture;
-import java.awt.Dimension;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Properties;
 import org.uispec4j.Trigger;
 import org.uispec4j.UISpecTestCase;
 import org.uispec4j.Window;
@@ -89,7 +91,8 @@ public abstract class GuiPluginTestCase extends UISpecTestCase {
         serverCore.addPlugin(MadServerPlugin.class);
         serverCore.addPlugin(ServerTestPlugin.class);
         addPlugins(serverCore, getServerPlugins());
-        String configFile = getClass().getResource("/server-config.properties").getFile();
+        String configFile =
+              new File(PathUtil.findTargetDirectory(getClass()), "/config/server-config.properties").getCanonicalPath();
         String[] arguments = new String[]{"-configuration", configFile};
         serverCore.start(new CommandLineArguments(arguments));
     }

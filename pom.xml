@@ -23,6 +23,11 @@
             </dependency>
             <dependency>
                 <groupId>net.codjo.referential</groupId>
+                <artifactId>codjo-referential-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.codjo.referential</groupId>
                 <artifactId>codjo-referential-datagen</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -54,6 +59,7 @@
     <modules>
         <module>codjo-referential-datagen</module>
         <module>codjo-referential-gui</module>
+        <module>codjo-referential-server</module>
         <module>codjo-referential-release-test</module>
         <module>codjo-referential-gui-addon</module>
     </modules>
