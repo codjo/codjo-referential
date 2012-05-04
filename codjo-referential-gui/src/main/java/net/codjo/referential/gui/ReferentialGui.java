@@ -1,12 +1,7 @@
 package net.codjo.referential.gui;
-import net.codjo.gui.toolkit.tree.Matcher;
-import net.codjo.gui.toolkit.tree.TreeFilterModel;
-import net.codjo.mad.gui.framework.GuiContext;
-import net.codjo.referential.gui.api.Referential;
-import net.codjo.referential.gui.api.ReferentialTreeGui;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -16,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -23,17 +19,33 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
+import net.codjo.gui.toolkit.tree.Matcher;
+import net.codjo.gui.toolkit.tree.TreeFilterModel;
+import net.codjo.i18n.common.Language;
+import net.codjo.i18n.common.TranslationManager;
+import net.codjo.i18n.gui.Internationalizable;
+import net.codjo.i18n.gui.InternationalizableContainer;
+import net.codjo.i18n.gui.TranslationNotifier;
+import net.codjo.mad.gui.framework.GuiContext;
+import net.codjo.mad.gui.i18n.InternationalizationUtil;
+import net.codjo.referential.gui.api.Referential;
+import net.codjo.referential.gui.api.ReferentialTreeGui;
 
-public class ReferentialGui extends JInternalFrame implements ReferentialTreeGui {
+public class ReferentialGui extends JInternalFrame implements ReferentialTreeGui,
+                                                              InternationalizableContainer,
+                                                              Internationalizable {
     private JPanel panel;
     private JTree referentialTree;
     private JPanel referentialPanel;
     private JTextField searchField;
     private JButton resetSearchButton;
     private JButton performSearchButton;
+    private JLabel filterLabel;
+    private JPanel refListPanel;
     private final GuiContext guiContext;
 
     private TreeFilterModel treeFilterModel;
+    private TranslationNotifier translationNotifier;
 
 
     ReferentialGui(GuiContext guiContext, String title, Dimension preferredSize) {
@@ -43,9 +55,40 @@ public class ReferentialGui extends JInternalFrame implements ReferentialTreeGui
         initPerformSearchButton();
         initResetSearchButton();
         initSearchField();
+
+        translationNotifier = InternationalizationUtil.retrieveTranslationNotifier(guiContext);
+        translationNotifier.addInternationalizableContainer(this);
+        translationNotifier.addInternationalizable(this);
+
+        updateSearchFieldTooltip(InternationalizationUtil.retrieveTranslationManager(guiContext));
+
         getContentPane().add(panel);
         this.setPreferredSize(preferredSize == null ? new Dimension(990, 600) : preferredSize);
         this.pack();
+    }
+
+
+    public void updateTranslation(Language language, TranslationManager translator) {
+        updateSearchFieldTooltip(translator);
+    }
+
+
+    private void updateSearchFieldTooltip(TranslationManager translator) {
+        searchField.setToolTipText(translator.translate("ReferentialGui.searchField.tooltip",
+                                                        translationNotifier.getLanguage()));
+    }
+
+
+    public void addInternationalizableComponents(TranslationNotifier notifier) {
+        translationNotifier.addInternationalizableComponent(this, "ReferentialGui.title");
+        translationNotifier.addInternationalizableComponent(refListPanel, "ReferentialGui.refListPanel.title");
+        translationNotifier.addInternationalizableComponent(filterLabel, "ReferentialGui.filterLabel");
+        translationNotifier.addInternationalizableComponent(performSearchButton,
+                                                            null,
+                                                            "ReferentialGui.performSearchButton.tooltip");
+        translationNotifier.addInternationalizableComponent(resetSearchButton,
+                                                            null,
+                                                            "ReferentialGui.resetSearchButton.tooltip");
     }
 
 

@@ -17,7 +17,6 @@ public class ReferentialGuiPluginTest extends TestCase {
 
 
     public void test_mappingFileNotFound() throws Exception {
-
         try {
             guiPlugin.initGui(new GuiConfigurationMock());
             fail();

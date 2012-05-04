@@ -1,5 +1,13 @@
 package net.codjo.referential.gui;
 
+import java.awt.Dimension;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import junit.framework.TestCase;
 import net.codjo.mad.client.request.MadServerFixture;
 import net.codjo.mad.client.request.Result;
 import net.codjo.mad.gui.framework.DefaultGuiContext;
@@ -20,15 +28,6 @@ import net.codjo.referential.gui.api.TreeGuiCustomizerMock;
 import net.codjo.security.common.api.UserMock;
 import net.codjo.test.common.GuiUtil;
 import net.codjo.test.common.LogString;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
-import java.awt.Dimension;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-import junit.framework.TestCase;
 
 public class ReferentialLogicTest extends TestCase {
     private ReferentialLogic referentialLogic;
@@ -105,8 +104,8 @@ public class ReferentialLogicTest extends TestCase {
         frame.setContentPane(jDesktopPane);
         jDesktopPane.add(gui);
         gui.setVisible(true);
-        log.assertContent("init(tree<Gestion des référentiels>), " 
-                + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<>)");
+        log.assertContent("init(tree<Gestion des référentiels>), "
+                          + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<null>)");
 
         assertEquals("[root, Devise] [root, Fréquence de valorisation] [root, Pays] [root, VL d'exécution]",
                      GuiUtil.uiDisplayedContent(gui.getReferentialTree()));
@@ -120,18 +119,18 @@ public class ReferentialLogicTest extends TestCase {
         assertEquals("le code", listGui.getTable().getColumnName(0));
 
         log.assertContent("init(tree<Gestion des référentiels>), "
-                + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<>), "
-                + "handleListClose(list<>), "
-                + "handleListOpen(ref<Devise>, list<Devise>), handleListClose(list<Devise>), "
-                + "handleListOpen(ref<Fréquence de valorisation>, list<Fréquence de valorisation>)");
+                          + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<null>), "
+                          + "handleListClose(list<null>), "
+                          + "handleListOpen(ref<Devise>, list<Devise>), handleListClose(list<Devise>), "
+                          + "handleListOpen(ref<Fréquence de valorisation>, list<Fréquence de valorisation>)");
 
         gui.doDefaultCloseAction();
         log.assertContent("init(tree<Gestion des référentiels>), "
-                + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<>), "
-                + "handleListClose(list<>), "
-                + "handleListOpen(ref<Devise>, list<Devise>), handleListClose(list<Devise>), "
-                + "handleListOpen(ref<Fréquence de valorisation>, list<Fréquence de valorisation>), "
-                + "handleFrameClose(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<Fréquence de valorisation>)");
+                          + "handleFrameOpen(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<null>), "
+                          + "handleListClose(list<null>), "
+                          + "handleListOpen(ref<Devise>, list<Devise>), handleListClose(list<Devise>), "
+                          + "handleListOpen(ref<Fréquence de valorisation>, list<Fréquence de valorisation>), "
+                          + "handleFrameClose(context<net.codjo.referential.gui.ReferentialGuiContext>, listGui<Fréquence de valorisation>)");
     }
 
 
