@@ -6,6 +6,7 @@ net.codjo.referential.gui.addon.tabbed
 	-> net.codjo.mad.gui.framework
 	-> net.codjo.mad.gui.request
 	-> net.codjo.mad.gui.request.wrapper
+	-> net.codjo.referential.gui
 	-> net.codjo.referential.gui.addon
 	-> net.codjo.referential.gui.addon.tabbed.field
 	-> net.codjo.referential.gui.api

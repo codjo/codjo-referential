@@ -25,6 +25,5 @@ public class AuditGuiCustomizer implements GuiCustomizer {
 
 
     public void initDefaultFieldValue(Field field) {
-        // Todo
     }
 }

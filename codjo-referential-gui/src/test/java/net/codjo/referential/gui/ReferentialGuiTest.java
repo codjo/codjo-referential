@@ -107,7 +107,7 @@ public class ReferentialGuiTest extends UISpecTestCase {
 
 
     private static GuiContext createGuiContext(MadServerFixture serverFixture) {
-        DefaultGuiContext guiContext = new DefaultGuiContext();
+        DefaultGuiContext guiContext = new ReferentialGuiContext();
         guiContext.setSender(new Sender(serverFixture.getOperations()));
         guiContext.setUser(new UserMock().mockIsAllowedTo(true));
         return guiContext;
