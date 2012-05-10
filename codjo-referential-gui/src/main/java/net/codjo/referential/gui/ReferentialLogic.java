@@ -1,5 +1,16 @@
 package net.codjo.referential.gui;
 
+import java.awt.Dimension;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import javax.swing.JTree;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 import net.codjo.gui.toolkit.util.ErrorDialog;
 import net.codjo.gui.toolkit.waiting.WaitingPanel;
 import net.codjo.mad.client.request.FieldsList;
@@ -14,17 +25,6 @@ import net.codjo.referential.gui.api.ListGuiCustomizer;
 import net.codjo.referential.gui.api.Referential;
 import net.codjo.referential.gui.api.ReferentialFrameCustomizer;
 import net.codjo.referential.gui.api.TreeGuiCustomizer;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.awt.Dimension;
-import javax.swing.JTree;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 public class ReferentialLogic implements GuiLogic<ReferentialGui> {
     private ReferentialGui referentialGui;
@@ -50,15 +50,16 @@ public class ReferentialLogic implements GuiLogic<ReferentialGui> {
         this.referentialGui = new ReferentialGui(guiContext, "Gestion des référentiels", preferredSize);
         sender = guiContext.getSender();
         initGuiListener();
-        initListGui(referentialMapping, treeGuiCustomizer, waitingPanel);
+        initListGui(guiContext, referentialMapping, treeGuiCustomizer, waitingPanel);
     }
 
 
-    private void initListGui(ReferentialMapping referentialMapping,
+    private void initListGui(GuiContext guiContext,
+                             ReferentialMapping referentialMapping,
                              TreeGuiCustomizer treeGuiCustomizer,
                              boolean isWaitingPanelActivated)
           throws Exception {
-        this.referentialListGui = new DefaultReferentialListGui();
+        this.referentialListGui = new DefaultReferentialListGui(guiContext);
         referentialGui.addReferentialPanel(referentialListGui);
         buildFamilyList(referentialMapping.getReferentialsByPreferenceId());
         if (!referentialFamilyList.isEmpty()) {
@@ -162,7 +163,7 @@ public class ReferentialLogic implements GuiLogic<ReferentialGui> {
         referentialListGui.create();
         listGuiCustomizer.handleListClose(referentialListGui);
         referentialListGui.setTitle(referential.getTitle());
-        referentialListGui.init(ctx, referential.getPreference(), referential);
+        referentialListGui.init(referential.getPreference(), referential);
         listGuiCustomizer.handleListOpen(referential, referentialListGui);
 
         if (waitingPanel != null) {

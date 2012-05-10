@@ -1,30 +1,24 @@
 package net.codjo.referential.gui.addon.tabbed;
 
+import java.io.FileNotFoundException;
 import net.codjo.mad.client.request.RequestException;
 import net.codjo.mad.gui.framework.AbstractDetailGui;
-import net.codjo.mad.gui.framework.DefaultGuiContext;
 import net.codjo.mad.gui.request.DetailDataSource;
+import net.codjo.referential.gui.ReferentialGuiContext;
 import net.codjo.referential.gui.addon.TestUtil;
 import net.codjo.referential.gui.addon.tabbed.field.GuiField;
 import net.codjo.referential.gui.addon.tabbed.field.GuiFieldGroup;
 import net.codjo.referential.gui.addon.tabbed.field.GuiReferential;
 import net.codjo.referential.gui.api.Referential;
-import static net.codjo.test.common.matcher.JUnitMatchers.*;
-import java.io.FileNotFoundException;
-import org.junit.Before;
 import org.junit.Test;
 import org.uispec4j.TabGroup;
 import org.uispec4j.TextBox;
 import org.uispec4j.Window;
 
+import static net.codjo.test.common.matcher.JUnitMatchers.*;
+
 public class AbstractTabbedPaneDetailLogicTest {
-    private DetailDataSource dataSource = new DetailDataSource(new DefaultGuiContext());
-
-
-    @Before
-    public void setUp() {
-
-    }
+    private DetailDataSource dataSource = new DetailDataSource(new ReferentialGuiContext());
 
 
     @Test

@@ -11,8 +11,7 @@ public class ReferentialGuiContext extends DefaultGuiContext {
         MadGuiContext context = new MadGuiContext();
 
         TranslationManager translationManager = InternationalizationUtil.retrieveTranslationManager(context);
-        TranslationNotifier translationNotifier
-              = InternationalizationUtil.retrieveTranslationNotifier(context);
+        TranslationNotifier translationNotifier = InternationalizationUtil.retrieveTranslationNotifier(context);
 
         translationManager.addBundle("net.codjo.referential.gui.i18n", Language.FR);
         translationManager.addBundle("net.codjo.referential.gui.i18n", Language.EN);

@@ -20,6 +20,12 @@
             <artifactId>codjo-referential-gui</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.codjo.referential</groupId>
+            <artifactId>codjo-referential-gui</artifactId>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>net.codjo.mad</groupId>
             <artifactId>codjo-mad-gui</artifactId>
         </dependency>

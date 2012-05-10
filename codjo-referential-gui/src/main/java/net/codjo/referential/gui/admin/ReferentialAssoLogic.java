@@ -1,19 +1,4 @@
 package net.codjo.referential.gui.admin;
-import net.codjo.gui.toolkit.table.TableFilter;
-import net.codjo.gui.toolkit.util.ErrorDialog;
-import net.codjo.mad.client.request.FieldsList;
-import net.codjo.mad.client.request.RequestException;
-import net.codjo.mad.client.request.Row;
-import net.codjo.mad.gui.framework.GuiContext;
-import net.codjo.mad.gui.request.JoinKeys;
-import net.codjo.mad.gui.request.ListDataSource;
-import static net.codjo.mad.gui.request.ListDataSource.CONTENT_PROPERTY;
-import net.codjo.mad.gui.request.RequestTable;
-import net.codjo.mad.gui.request.RowFiller;
-import net.codjo.mad.gui.request.util.selection.SelectionGui;
-import net.codjo.mad.gui.request.util.selection.SelectionLogic;
-import net.codjo.referential.gui.ReferentialMapping;
-import net.codjo.referential.gui.api.Referential;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -24,6 +9,22 @@ import java.util.List;
 import java.util.SortedMap;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import net.codjo.gui.toolkit.table.TableFilter;
+import net.codjo.gui.toolkit.util.ErrorDialog;
+import net.codjo.mad.client.request.FieldsList;
+import net.codjo.mad.client.request.RequestException;
+import net.codjo.mad.client.request.Row;
+import net.codjo.mad.gui.framework.GuiContext;
+import net.codjo.mad.gui.request.JoinKeys;
+import net.codjo.mad.gui.request.ListDataSource;
+import net.codjo.mad.gui.request.RequestTable;
+import net.codjo.mad.gui.request.RowFiller;
+import net.codjo.mad.gui.request.util.selection.SelectionGui;
+import net.codjo.mad.gui.request.util.selection.SelectionLogic;
+import net.codjo.referential.gui.ReferentialMapping;
+import net.codjo.referential.gui.api.Referential;
+
+import static net.codjo.mad.gui.request.ListDataSource.CONTENT_PROPERTY;
 /**
  *
  */

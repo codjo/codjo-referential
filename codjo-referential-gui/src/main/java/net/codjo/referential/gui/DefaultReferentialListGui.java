@@ -4,47 +4,57 @@
  * Copyright (c) 2001 AGF Asset Management.
  */
 package net.codjo.referential.gui;
+import java.awt.BorderLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
+import net.codjo.i18n.common.Language;
+import net.codjo.i18n.common.TranslationManager;
+import net.codjo.i18n.gui.Internationalizable;
+import net.codjo.i18n.gui.TranslationNotifier;
 import net.codjo.mad.client.request.RequestException;
 import net.codjo.mad.gui.framework.GuiContext;
+import net.codjo.mad.gui.i18n.InternationalizationUtil;
 import net.codjo.mad.gui.request.Position;
 import net.codjo.mad.gui.request.Preference;
 import net.codjo.mad.gui.request.RequestTable;
 import net.codjo.mad.gui.request.RequestToolBar;
 import net.codjo.referential.gui.api.Referential;
 import net.codjo.referential.gui.api.ReferentialListGui;
-import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
+
 /**
  *
  */
-public class DefaultReferentialListGui extends JPanel implements ReferentialListGui {
-
+public class DefaultReferentialListGui extends JPanel implements ReferentialListGui, Internationalizable {
     protected RequestTable table;
     protected RequestToolBar toolBar;
-    private String title = "";
+    private String title = null;
     private TitledBorder titleBorder;
     private JPanel topPanelContainer = new JPanel(new BorderLayout());
     private JPanel centerPanel;
+    private GuiContext guiContext;
 
 
-    public DefaultReferentialListGui() {
-        titleBorder = BorderFactory.createTitledBorder("Listes de données du référentiel " + title);
+    public DefaultReferentialListGui(GuiContext guiContext) {
+        this.guiContext = guiContext;
+        initI18n();
+        titleBorder = BorderFactory.createTitledBorder(computeTitle());
         setBorder(titleBorder);
         buildGui();
     }
 
 
-    public DefaultReferentialListGui(String title) {
+    public DefaultReferentialListGui(GuiContext guiContext, String title) {
+        this.guiContext = guiContext;
+        initI18n();
         this.title = title;
         titleBorder = BorderFactory.createTitledBorder(title);
         buildGui();
     }
 
 
-    public void init(GuiContext guiContext, Preference preference, Referential referential) {
+    public void init(Preference preference, Referential referential) {
         table.setPreference(preference);
         toolBar.setHasExcelButton(true);
         toolBar.init(guiContext, table);
@@ -59,6 +69,17 @@ public class DefaultReferentialListGui extends JPanel implements ReferentialList
                     DuplicateAction.ACTION_NAME,
                     Position.right(RequestToolBar.ACTION_DELETE),
                     true);
+    }
+
+
+    public void updateTranslation(Language language, TranslationManager translator) {
+        titleBorder.setTitle(computeTitle());
+    }
+
+
+    private String computeTitle() {
+        String fixTitle = InternationalizationUtil.translate("DefaultReferentialListGui.title", guiContext);
+        return ((title == null) || ("".equals(title))) ? fixTitle : fixTitle + " '" + title + "'";
     }
 
 
@@ -81,6 +102,12 @@ public class DefaultReferentialListGui extends JPanel implements ReferentialList
     }
 
 
+    private void initI18n() {
+        TranslationNotifier translationNotifier = InternationalizationUtil.retrieveTranslationNotifier(guiContext);
+        translationNotifier.addInternationalizable(this);
+    }
+
+
     private void addCenterPanel() {
         invalidate();
         if (centerPanel != null) {
@@ -97,7 +124,7 @@ public class DefaultReferentialListGui extends JPanel implements ReferentialList
 
     public void setTitle(String title) {
         this.title = title;
-        titleBorder.setTitle("Listes de données du référentiel " + title);
+        titleBorder.setTitle(computeTitle());
     }
 
 
