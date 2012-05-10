@@ -2,7 +2,7 @@
     <parent>
         <artifactId>codjo-referential</artifactId>
         <groupId>net.codjo.referential</groupId>
-        <version>1.66</version>
+        <version>1.67-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
