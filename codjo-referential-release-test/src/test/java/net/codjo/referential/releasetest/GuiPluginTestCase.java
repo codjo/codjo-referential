@@ -101,10 +101,10 @@ public abstract class GuiPluginTestCase extends UISpecTestCase {
     private void initClient() throws IOException {
         guiCore = new MadGuiCore(getClass().getResource("/conf/menu.xml"), null);
         guiCore.getConfiguration().setMainWindowSize(new Dimension(1100, 900));
+        guiCore.addPlugin(InternationalizationGuiPlugin.class);
         guiCore.addPlugin(SecurityClientPlugin.class);
         guiCore.addPlugin(MadConnectionPlugin.class);
         guiCore.addPlugin(SecurityGuiPlugin.class);
-        guiCore.addPlugin(InternationalizationGuiPlugin.class);
         guiCore.addPlugin(MadGuiPlugin.class);
         guiCore.addPlugin(MyGuiPlugin.class);
         addPlugins(guiCore, getGuiPlugins());
